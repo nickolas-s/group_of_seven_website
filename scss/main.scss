@@ -1,0 +1,578 @@
+@import "config";
+
+// General Styles
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: $light-color;
+  line-height: 1.6;
+  letter-spacing: 1px;
+  font-family: $font-body;
+  color: $dark-color;
+}
+
+a {
+  text-decoration: none;
+  color: $dark-color;
+}
+
+ul {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  text-transform: uppercase;
+  font-family: $font-heading;
+  text-align: center;
+  margin-bottom: 1rem;
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-gap: 20px;
+  align-items: center;
+
+  &::before,
+  &::after {
+    display: block;
+    content: " ";
+    height: 10px;
+    background: linear-gradient(
+      to var(--direction, left),
+      $primary-color,
+      transparent
+    );
+  }
+
+  &::after {
+    --direction: right;
+  }
+}
+
+p {
+  padding-bottom: 1rem;
+}
+
+img {
+  width: 100%;
+}
+
+// Utilities
+.container {
+  max-width: $website-width;
+  margin: auto;
+  overflow: hidden;
+}
+
+.l-heading {
+  font-size: 4rem;
+  margin-bottom: 0;
+}
+
+.lead {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  background: $light-color;
+  margin: 2rem;
+  padding: 2rem;
+  border-radius: 5px;
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.3);
+}
+
+//  Buttons
+%btn-shared {
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  transition: all 0.5s;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn {
+  &-main {
+    @extend %btn-shared;
+    background: $primary-color;
+    color: #ffffff;
+
+    &:hover {
+      background: $accent-color;
+      color: $dark-color;
+    }
+  }
+}
+
+// Navbar
+#main-header {
+  background: $header-color;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  opacity: 0.95;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.8);
+
+  .navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+
+    .logo {
+      font-family: $font-logo;
+      font-size: 1.5rem;
+      margin-left: 0.5rem;
+      a {
+        color: inherit;
+        .fa-palette {
+          color: $dark-color;
+        }
+      }
+    }
+    li {
+      display: inline;
+
+      a {
+        padding: 0.5rem;
+        color: inherit;
+        position: relative;
+
+        &::before {
+          content: "";
+          display: block;
+          height: 3px;
+          background: $medium-color;
+          position: absolute;
+          bottom: -0.2rem;
+          left: 0;
+          right: 0;
+          border-radius: 2px;
+          transform: scale(0, 1);
+          transition: transform ease-in-out 250ms;
+        }
+
+        &:hover::before {
+          transform: scale(1, 1);
+        }
+      }
+    }
+
+    // Toggle style
+    .nav-toggle {
+      display: none;
+    }
+
+    .nav-toggle-label {
+      display: none;
+    }
+  }
+}
+
+// Hero
+#header-hero {
+  height: 50vh;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  color: $light-color;
+  background: $dark-color;
+  position: relative;
+
+  &::before {
+    content: "";
+    background: url("../img/Group-of-seven-artists.jpg") no-repeat center
+      center/cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.4;
+    width: 100%;
+    height: 100%;
+  }
+  .hero-content {
+    z-index: 2;
+  }
+}
+
+// Sections A: About
+#about,
+#collections {
+  padding: 2rem 3rem;
+}
+
+// Section B: Members
+#members {
+  background: #fff;
+  .container {
+    padding: 2rem 3rem;
+  }
+
+  .member {
+    &-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.5rem;
+    }
+
+    &-card {
+      position: relative;
+      background: $dark-color;
+      img {
+        display: block;
+        transition: opacity ease-out 250ms;
+        opacity: 1;
+      }
+
+      &:hover {
+        .member-text {
+          opacity: 1;
+        }
+        img {
+          opacity: 0.3;
+        }
+      }
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0.75rem;
+        bottom: 0.75rem;
+        right: 0.75rem;
+        left: 0.75rem;
+      }
+      // Before
+      &::before {
+        transform: scale(0, 1);
+        transition: transform ease-out 250ms;
+        border-top: 1px solid #fff;
+        border-bottom: 1px solid #fff;
+      }
+
+      &:hover::before {
+        transform: scale(1.06, 1);
+      }
+
+      // After
+      &::after {
+        transform: scale(1, 0);
+        transition: transform ease-out 250ms;
+        border-left: 1px solid #fff;
+        border-right: 1px solid #fff;
+      }
+
+      &:hover::after {
+        transform: scale(1, 1.06);
+      }
+    }
+
+    &-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #fff;
+      opacity: 0;
+      text-align: center;
+      transition: opacity ease-out 250ms;
+    }
+
+    &-name,
+    &-years {
+      font-size: 0.8rem;
+      margin-bottom: 0;
+      padding: 0;
+    }
+  }
+}
+
+// Section C: Tom Thomson
+.tom {
+  &-content {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas:
+      "text text text portrait"
+      "img01 img01 img02 img02";
+  }
+
+  &-portrait {
+    grid-area: portrait;
+    justify-self: center;
+    img {
+      max-width: 150px;
+    }
+  }
+
+  &-text {
+    grid-area: text;
+    align-self: center;
+  }
+
+  &-img-grid {
+    border-radius: 5px;
+    padding: 0.5rem;
+    border: 1px solid $medium-color;
+    position: relative;
+    transition: all 0.25s;
+
+    &:hover {
+      background: $accent-color;
+      transform: scale(1.05);
+      .img-title {
+        background: $primary-color;
+        transform: scale(1.1);
+      }
+    }
+
+    .img-title {
+      position: absolute;
+      top: -13px;
+      right: calc(50% - 58px);
+      background: $accent-color;
+      color: #fff;
+      text-align: center;
+      width: 116px;
+      height: 26px;
+      border-radius: 5px;
+      padding: 0 0.5rem;
+      transition: all 0.25s;
+    }
+  }
+
+  &-img01 {
+    grid-area: img01;
+    img {
+      display: block;
+      height: 100%;
+    }
+  }
+
+  &-img02 {
+    grid-area: img02;
+    img {
+      display: block;
+      height: 100%;
+    }
+  }
+}
+
+// Section D: Influences
+#influences {
+  background: #fff;
+  div {
+    padding: 2rem 3rem;
+  }
+}
+
+//  Section E: Collections
+#collections {
+  .logo {
+    &-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      gap: 0.5rem;
+    }
+
+    &-item {
+      align-self: center;
+      img {
+        display: block;
+      }
+    }
+  }
+}
+
+// Footer
+#footer {
+  display: grid;
+  background: $dark-color;
+  color: #fff;
+  // text-align: center;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+
+  p {
+    padding: 0;
+  }
+}
+
+/* Smatphones */
+@media screen and (max-width: 650px) {
+  #main-header {
+    // background: red;
+    .navbar-content {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: stretch;
+      text-align: left;
+
+      nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: $header-color;
+        width: 100%;
+        transform: scale(1, 0);
+        transform-origin: top;
+        transition: transform 400ms ease-in-out;
+
+        li {
+          display: block;
+          text-align: right;
+          margin-bottom: 1rem;
+          margin-right: 1rem;
+
+          a {
+            opacity: 0;
+            transition: opacity 150ms ease-in-out;
+          }
+        }
+      }
+
+      .nav-toggle:checked {
+        & ~ nav {
+          transform: scale(1, 1);
+
+          a {
+            opacity: 1;
+            transition: opacity 250ms ease-in-out 250ms;
+          }
+
+          & + .nav-toggle-label > span {
+            transform: rotate(135deg);
+
+            &::before {
+              display: none;
+            }
+
+            &::after {
+              top: 0;
+              transform: rotate(90deg);
+            }
+          }
+          & + .nav-toggle-label:hover > span {
+            transform: rotate(225deg);
+          }
+        }
+      }
+
+      .nav-toggle-label {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin-right: 1.5rem;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        transition: all 0.4s ease;
+        cursor: pointer;
+
+        %span-shared {
+          display: block;
+          background: #fff;
+          height: 2px;
+          width: 2rem;
+          border-radius: 2px;
+          position: relative;
+        }
+
+        span {
+          @extend %span-shared;
+          transition: all 0.4s ease;
+
+          &::before {
+            @extend %span-shared;
+            content: "";
+            position: absolute;
+            bottom: 7px;
+          }
+
+          &::after {
+            @extend %span-shared;
+            content: "";
+            position: absolute;
+            top: 7px;
+          }
+        }
+      }
+    }
+  }
+
+  // Hero
+  .l-heading {
+    font-size: 2.5rem;
+  }
+
+  h1::before,
+  h1::after {
+    background: transparent;
+  }
+
+  // Section B: Members
+  #members {
+    .member-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  // Section C: Tom Thomson
+  .tom-content {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "portrait"
+      "text"
+      "img01"
+      "img02";
+  }
+
+  .tom-img01 {
+    margin-bottom: 1rem;
+  }
+
+  //  Section E: Collections
+  #collections {
+    .logo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+
+    .mcmichael {
+      grid-column: 1 / -1;
+      grid-row-start: 1;
+    }
+  }
+
+  #about,
+  #members .container,
+  #influences div,
+  #collections {
+    padding: 1.5rem 1.5rem;
+  }
+
+  .card {
+    margin: 1.5rem;
+    padding: 1.5rem;
+  }
+}
