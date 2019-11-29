@@ -1,3 +1,4 @@
+/* Color Theme Swatches in Hex */
 html {
   box-sizing: border-box; }
 
@@ -45,7 +46,7 @@ h4 {
     display: block;
     content: " ";
     height: 10px;
-    background: linear-gradient(to var(--direction, left), #e27c60, transparent); }
+    background: linear-gradient(to var(--direction, left), #3a848c, transparent); }
   h1::after,
   h2::after,
   h3::after,
@@ -87,20 +88,19 @@ img {
   border-radius: 5px; }
 
 .btn-main {
-  background: #e27c60;
+  background: #3a848c;
   color: #ffffff; }
   .btn-main:hover {
     background: #41b3aa;
     color: #333; }
 
 #main-header {
-  background: #e4937d;
-  color: #fff;
+  background: #f4f4f4;
+  color: #333;
   position: sticky;
   top: 0;
   z-index: 999;
-  opacity: 0.95;
-  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.8); }
+  opacity: 0.95; }
   #main-header .navbar-content {
     display: flex;
     justify-content: space-between;
@@ -114,7 +114,7 @@ img {
       #main-header .navbar-content .logo a {
         color: inherit; }
         #main-header .navbar-content .logo a .fa-palette {
-          color: #333; }
+          color: #41b3aa; }
     #main-header .navbar-content li {
       display: inline; }
       #main-header .navbar-content li a {
@@ -125,7 +125,7 @@ img {
           content: "";
           display: block;
           height: 3px;
-          background: #ccc;
+          background: #41b3aa;
           position: absolute;
           bottom: -0.2rem;
           left: 0;
@@ -245,7 +245,7 @@ img {
     background: #41b3aa;
     transform: scale(1.05); }
     .tom-img-grid:hover .img-title {
-      background: #e27c60;
+      background: #3a848c;
       transform: scale(1.1); }
   .tom-img-grid .img-title {
     position: absolute;
@@ -297,8 +297,7 @@ img {
   #footer p {
     padding: 0; }
 
-/* Smatphones */
-@media screen and (max-width: 650px) {
+@media only screen and (max-width: 650px), only screen and (max-height: 414px) {
   #main-header .navbar-content {
     flex-direction: column;
     justify-content: flex-start;
@@ -308,7 +307,7 @@ img {
       position: absolute;
       top: 100%;
       left: 0;
-      background-color: #e4937d;
+      background-color: #f4f4f4;
       width: 100%;
       transform: scale(1, 0);
       transform-origin: top;
@@ -348,7 +347,7 @@ img {
       cursor: pointer; }
       #main-header .navbar-content .nav-toggle-label span, #main-header .navbar-content .nav-toggle-label span::before, #main-header .navbar-content .nav-toggle-label span::after {
         display: block;
-        background: #fff;
+        background: #333;
         height: 2px;
         width: 2rem;
         border-radius: 2px;
@@ -368,6 +367,20 @@ img {
   h1::before,
   h1::after {
     background: transparent; }
+  #about,
+  #members .container,
+  #influences div,
+  #collections {
+    padding: 1.5rem 1.5rem; }
+  .card {
+    margin: 1.5rem;
+    padding: 1.5rem; } }
+
+@media only screen and (max-height: 530px) {
+  #header-hero {
+    height: calc(100vh - 70.4px); } }
+
+@media only screen and (max-width: 567px) {
   #members .member-grid {
     grid-template-columns: repeat(2, 1fr); }
   .tom-content {
@@ -381,12 +394,4 @@ img {
     gap: 0.5rem; }
   #collections .mcmichael {
     grid-column: 1 / -1;
-    grid-row-start: 1; }
-  #about,
-  #members .container,
-  #influences div,
-  #collections {
-    padding: 1.5rem 1.5rem; }
-  .card {
-    margin: 1.5rem;
-    padding: 1.5rem; } }
+    grid-row-start: 1; } }

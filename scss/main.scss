@@ -119,13 +119,12 @@ img {
 
 // Navbar
 #main-header {
-  background: $header-color;
-  color: #fff;
+  background: $light-color;
+  color: $dark-color;
   position: sticky;
   top: 0;
   z-index: 999;
   opacity: 0.95;
-  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.8);
 
   .navbar-content {
     display: flex;
@@ -141,7 +140,7 @@ img {
       a {
         color: inherit;
         .fa-palette {
-          color: $dark-color;
+          color: $accent-color;
         }
       }
     }
@@ -157,7 +156,7 @@ img {
           content: "";
           display: block;
           height: 3px;
-          background: $medium-color;
+          background: $accent-color;
           position: absolute;
           bottom: -0.2rem;
           left: 0;
@@ -416,8 +415,8 @@ img {
   }
 }
 
-/* Smatphones */
-@media screen and (max-width: 650px) {
+// Smartphones - Landscape and Portrait
+@media only screen and (max-width: 650px), only screen and (max-height: 414px) {
   #main-header {
     // background: red;
     .navbar-content {
@@ -430,7 +429,7 @@ img {
         position: absolute;
         top: 100%;
         left: 0;
-        background-color: $header-color;
+        background-color: $light-color;
         width: 100%;
         transform: scale(1, 0);
         transform-origin: top;
@@ -490,7 +489,7 @@ img {
 
         %span-shared {
           display: block;
-          background: #fff;
+          background: $dark-color;
           height: 2px;
           width: 2rem;
           border-radius: 2px;
@@ -529,6 +528,28 @@ img {
     background: transparent;
   }
 
+  #about,
+  #members .container,
+  #influences div,
+  #collections {
+    padding: 1.5rem 1.5rem;
+  }
+
+  .card {
+    margin: 1.5rem;
+    padding: 1.5rem;
+  }
+}
+
+// Smarthphones - Landscape Only
+@media only screen and (max-height: 530px) {
+  #header-hero {
+    height: calc(100vh - 70.4px);
+  }
+}
+
+// Smarthphones - Portrait Only
+@media only screen and (max-width: 567px) {
   // Section B: Members
   #members {
     .member-grid {
@@ -562,17 +583,5 @@ img {
       grid-column: 1 / -1;
       grid-row-start: 1;
     }
-  }
-
-  #about,
-  #members .container,
-  #influences div,
-  #collections {
-    padding: 1.5rem 1.5rem;
-  }
-
-  .card {
-    margin: 1.5rem;
-    padding: 1.5rem;
   }
 }
